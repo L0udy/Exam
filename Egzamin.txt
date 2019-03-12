@@ -1,0 +1,103 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace rolki
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Skates skates = new Skates(40, 4, Shue.color.black);
+            Skates skates2 = new Skates(skates);
+        }
+    }
+}
+
+class Shoe
+{
+    public enum color { white, black, pink, blue };
+    private int sizeOfShoe;
+    public int _sizeOfShoe
+       
+    {
+        get
+        {
+            return sizeOfShoe;
+        }
+        set
+        {
+            sizeOfShoe = value;
+        }
+    }
+    private const int WearTime = 50;
+
+    private bool isHeeled { get; set; }
+    public Shoe(int _sizeOfFeet,color Color)
+    {
+        if (_sizeOfFeet < 10) _sizeOfFeet = 40;
+         _sizeOfFeet = _sizeOfShoe;
+      
+    }
+    public Shoe()
+    {
+        sizeOfShoe = 40;
+        isHeeled = false;
+    }
+    private void wearOff()
+    {
+        sizeOfShoe++;
+        Console.WriteLine("wyszedł Palec");
+    }
+}
+class Skates : Shoe
+{
+    private bool haveBreaks { get; set; }
+    private bool havefoot { get; set; }
+    Wheel wheel;
+    public Skates(int _sizeOfFeet,int numberOfWheels,color Color) : base(_sizeOfFeet,Color)
+        {
+         wheel = new Wheel(3);
+         haveBreaks = true;
+
+          if(havefoot==true)  Skate();
+           
+         }
+    public Skates(Skates copy)
+    {
+        addSkates();
+    }
+    public class Wheel
+    {
+        bool isRolling;
+        int diameterOfWheel;
+        public Wheel(int _diameterOfWheel)
+        {
+            if (_diameterOfWheel > 10) _diameterOfWheel = 5;
+            int diameterOfWheel = _diameterOfWheel;
+        }
+        public void roll()
+        {
+            isRolling = true;
+            System.Threading.Thread.Sleep(2000);
+            isRolling = false;
+        }
+
+    }
+    public static int skatesCounter;
+
+    public static int addSkates()
+    {
+        return ++skatesCounter;
+    }
+    private void Skate()
+    {
+        if (skatesCounter == 1) Console.WriteLine("Nie pojeździsz z jedną rolką");
+        else
+            wheel.roll();
+
+    }
+    
+}
